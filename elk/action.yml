@@ -1,0 +1,32 @@
+name: 'Run Elasticsearch and Kibana with security enabled'
+description: 'Run Elasticsearch and Kibana with Security enabled'
+author: 'flexibility-org'
+
+branding:
+  icon: 'database'
+  color: 'green'
+
+inputs:
+  elastic-version:
+    description: 'The version of Elasticsearch to run'
+    required: true
+  kibana-version:
+    description: 'The version of Kibana to run'
+    required: true
+  elastic-port:
+    description: 'The port to expose Elasticsearch at'
+    required: false
+    default: 9200
+  kibana-port:
+    description: 'The port to expose Kibana at'
+    required: false
+    default: 5601
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    ELASTIC_VERSION: ${{ inputs.elastic-version }}
+    KIBANA_VERSION: ${{ inputs.kibana-version }}
+    ELASTIC_PORT: ${{ inputs.elastic-port }}
+    KIBANA_PORT: ${{ inputs.kibana-port }}
